@@ -27,16 +27,16 @@ class Command(BaseCommand):
     EXISTING_HISTORY_FOUND = "Existing history found, skipping model"
     INVALID_MODEL_ARG = "An invalid model was specified"
 
-    option_list = BaseCommand.option_list + (
-        make_option(
+
+    def add_arguments(self, parser):
+        parser.add_argument(
             '--auto',
             action='store_true',
             dest='auto',
             default=False,
             help="Automatically search for models with the "
                  "HistoricalRecords field type",
-        ),
-    )
+        )
 
     def handle(self, *args, **options):
         to_process = set()
